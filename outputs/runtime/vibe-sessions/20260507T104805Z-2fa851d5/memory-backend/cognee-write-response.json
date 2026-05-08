@@ -1,0 +1,55 @@
+{
+  "ok": true,
+  "status": "backend_write",
+  "lane": "cognee",
+  "store_path": "C:\\Users\\Administrator\\.codeium\\windsurf-next\\skills\\vibe\\.vibeskills\\memory\\workspace-memory-plane.jsonl",
+  "project_key": "vibe",
+  "project_key_source": "workspace_plane",
+  "item_count": 3,
+  "items": [
+    "Persisted Cognee relation: local-rabbitmq-installation-on-windows-without-docker-deliverabl specified_by 2026-05-07-local-rabbitmq-installation-on-windows-without-docker-deliverabl.md",
+    "Persisted Cognee relation: local-rabbitmq-installation-on-windows-without-docker-deliverabl planned_in 2026-05-07-local-rabbitmq-installation-on-windows-without-docker-deliverabl-execution-plan.md",
+    "Persisted Cognee relation: local-rabbitmq-installation-on-windows-without-docker-deliverabl executed_as execution-manifest.json"
+  ],
+  "capsule_count": 3,
+  "capsules": [
+    {
+      "capsule_id": "23c6a973018cbee8",
+      "owner": "Cognee",
+      "lane": "cognee",
+      "kind": "entity_relation_ingest",
+      "disclosure_level": "bounded",
+      "summary": "specified_by",
+      "updated_at": "2026-05-07T10:48:13Z"
+    },
+    {
+      "capsule_id": "144505637ca779a9",
+      "owner": "Cognee",
+      "lane": "cognee",
+      "kind": "entity_relation_ingest",
+      "disclosure_level": "bounded",
+      "summary": "planned_in",
+      "updated_at": "2026-05-07T10:48:13Z"
+    },
+    {
+      "capsule_id": "4a06953b624de698",
+      "owner": "Cognee",
+      "lane": "cognee",
+      "kind": "entity_relation_ingest",
+      "disclosure_level": "bounded",
+      "summary": "executed_as",
+      "updated_at": "2026-05-07T10:48:13Z"
+    }
+  ],
+  "suppressed_count": 0,
+  "workspace_memory_plane": {
+    "schema_version": 1,
+    "workspace_root": "C:\\Users\\Administrator\\.codeium\\windsurf-next\\skills\\vibe",
+    "workspace_sidecar_root": "C:\\Users\\Administrator\\.codeium\\windsurf-next\\skills\\vibe\\.vibeskills",
+    "descriptor_path": "C:\\Users\\Administrator\\.codeium\\windsurf-next\\skills\\vibe\\.vibeskills\\project.json",
+    "workspace_id": "ws:1b56b003f8b44052ae414f34",
+    "plane_path": "C:\\Users\\Administrator\\.codeium\\windsurf-next\\skills\\vibe\\.vibeskills\\memory\\workspace-memory-plane.jsonl"
+  },
+  "driver_mode": "compatibility_shell",
+  "generated_at": "2026-05-07T10:48:13Z"
+}

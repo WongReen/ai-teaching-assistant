@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "status": "backend_read_empty",
+  "lane": "cognee",
+  "store_path": "C:\\Users\\Administrator\\.codeium\\windsurf-next\\skills\\vibe\\.vibeskills\\memory\\workspace-memory-plane.jsonl",
+  "project_key": "vibe",
+  "project_key_source": "workspace_plane",
+  "item_count": 0,
+  "items": [],
+  "capsule_count": 0,
+  "capsules": [],
+  "suppressed_count": 0,
+  "workspace_memory_plane": {
+    "schema_version": 1,
+    "workspace_root": "C:\\Users\\Administrator\\.codeium\\windsurf-next\\skills\\vibe",
+    "workspace_sidecar_root": "C:\\Users\\Administrator\\.codeium\\windsurf-next\\skills\\vibe\\.vibeskills",
+    "descriptor_path": "C:\\Users\\Administrator\\.codeium\\windsurf-next\\skills\\vibe\\.vibeskills\\project.json",
+    "workspace_id": "ws:1b56b003f8b44052ae414f34",
+    "plane_path": "C:\\Users\\Administrator\\.codeium\\windsurf-next\\skills\\vibe\\.vibeskills\\memory\\workspace-memory-plane.jsonl"
+  },
+  "driver_mode": "compatibility_shell",
+  "generated_at": "2026-05-07T10:45:00Z"
+}

@@ -38,6 +38,7 @@ from api.knowledge_base import router as knowledge_base_router
 from api.triage import router as triage_router
 from api.rubrics import router as rubrics_router
 from api.grading import router as grading_router
+from api.tasks import router as tasks_router
 
 # Setup enhanced logger
 logger = setup_logger(
@@ -59,6 +60,21 @@ async def lifespan(app: FastAPI):
     logger.info(f"📊 Request logging: {os.getenv('ENABLE_REQUEST_LOGGING', 'false')}")
     logger.info(f"⚡ Performance monitoring: {os.getenv('ENABLE_PERFORMANCE_MONITORING', 'false')}")
 
+    # Initialize RabbitMQ (optional - don't fail if not available)
+    try:
+        from core.messaging import get_connection
+        from services.task_processor import start_task_consumer
+
+        connection = await get_connection()
+        if connection:
+            logger.info("📨 RabbitMQ connected")
+            await start_task_consumer()
+            logger.info("📨 Task consumer started")
+        else:
+            logger.warning("📨 RabbitMQ not available - tasks will run synchronously")
+    except Exception as e:
+        logger.warning(f"📨 RabbitMQ initialization failed: {e}")
+
     # Initialize database tables
     async with async_engine.begin() as conn:
         # Import all models to ensure they are registered with Base
@@ -74,6 +90,18 @@ async def lifespan(app: FastAPI):
 
     # Shutdown
     logger.info(f"👋 Shutting down {settings.APP_NAME}")
+
+    # Close RabbitMQ connection
+    try:
+        from core.messaging import close_connection
+        from services.task_processor import stop_task_consumer
+
+        await stop_task_consumer()
+        await close_connection()
+        logger.info("📨 RabbitMQ disconnected")
+    except Exception as e:
+        logger.warning(f"📨 RabbitMQ shutdown error: {e}")
+
     await async_engine.dispose()
 
 
@@ -206,6 +234,7 @@ def create_app(testing: bool = False) -> FastAPI:
     app.include_router(triage_router, prefix=settings.API_V1_PREFIX)
     app.include_router(rubrics_router, prefix=settings.API_V1_PREFIX)
     app.include_router(grading_router, prefix=settings.API_V1_PREFIX)
+    app.include_router(tasks_router, prefix=settings.API_V1_PREFIX)
 
     return app
 

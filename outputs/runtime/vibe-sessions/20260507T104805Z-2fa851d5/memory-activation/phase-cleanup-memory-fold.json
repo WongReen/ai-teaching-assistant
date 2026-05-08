@@ -1,0 +1,20 @@
+{
+  "stage": "phase_cleanup",
+  "fold_kind": "deepagent_memory_fold_local",
+  "generated_at": "2026-05-07T10:48:13Z",
+  "working_memory": [
+    "Requirement doc: E:\\Code\\repo\\ai-teaching-assistant-frontend\\docs\\requirements\\2026-05-07-local-rabbitmq-installation-on-windows-without-docker-deliverabl.md",
+    "Execution plan: E:\\Code\\repo\\ai-teaching-assistant-frontend\\docs\\plans\\2026-05-07-local-rabbitmq-installation-on-windows-without-docker-deliverabl-execution-plan.md",
+    "Runtime status: completed_with_failures"
+  ],
+  "tool_memory": [
+    "Execution manifest: E:\\Code\\repo\\ai-teaching-assistant-frontend\\outputs\\runtime\\vibe-sessions\\20260507T104805Z-2fa851d5\\execution-manifest.json",
+    "Cleanup receipt: E:\\Code\\repo\\ai-teaching-assistant-frontend\\outputs\\runtime\\vibe-sessions\\20260507T104805Z-2fa851d5\\cleanup-receipt.json"
+  ],
+  "evidence_anchors": [
+    "E:\\Code\\repo\\ai-teaching-assistant-frontend\\docs\\requirements\\2026-05-07-local-rabbitmq-installation-on-windows-without-docker-deliverabl.md",
+    "E:\\Code\\repo\\ai-teaching-assistant-frontend\\docs\\plans\\2026-05-07-local-rabbitmq-installation-on-windows-without-docker-deliverabl-execution-plan.md",
+    "E:\\Code\\repo\\ai-teaching-assistant-frontend\\outputs\\runtime\\vibe-sessions\\20260507T104805Z-2fa851d5\\execution-manifest.json",
+    "E:\\Code\\repo\\ai-teaching-assistant-frontend\\outputs\\runtime\\vibe-sessions\\20260507T104805Z-2fa851d5\\cleanup-receipt.json"
+  ]
+}

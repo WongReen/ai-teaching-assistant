@@ -1,0 +1,24 @@
+{
+  "run_id": "20260406-project-tidy",
+  "stage": "skeleton_check",
+  "lane": "root_governed",
+  "timestamp": "2026-04-06",
+  "repo_root": "E:\\Code\\repo\\ai-teaching-assistant-frontend",
+  "branch": "main",
+  "artifacts_present": {
+    "existing_docs_dir": true,
+    "requirements_dir": true,
+    "plans_dir": true
+  },
+  "observations": [
+    "Repository root mixed active workspace files with stale helper scripts, duplicate docs, generated reports, and legacy empty directories.",
+    "Worktree was already dirty before execution and unrelated deletions were preserved.",
+    "Root env presets existed alongside backend and frontend env templates and needed role clarification.",
+    "The root package lockfile still reflected an unused workspace dependency."
+  ],
+  "hazards": [
+    "Do not overwrite or revert pre-existing user modifications.",
+    "Only remove files shown to be duplicate, generated, or unreferenced by the active workspace flow."
+  ],
+  "status": "completed"
+}

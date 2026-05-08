@@ -1,0 +1,71 @@
+{
+  "task": "local RabbitMQ installation on Windows without Docker Deliverable: Governed impl... Deliverable: Governed implementation artifacts, verification evidence, and cleanup receipts. Constraints: Do not bypass the fixed six-stage governed runtime.; Do not widen scope silently beyond the frozen requirement document.. Update: Install RabbitMQ with Erlang to E:\\Code\\repo on Windows without Docker",
+  "relations": [
+    {
+      "source": "local-rabbitmq-installation-on-windows-without-docker-deliverabl",
+      "relation": "specified_by",
+      "target": "2026-05-07-local-rabbitmq-installation-on-windows-without-docker-deliverabl.md",
+      "evidence_paths": [
+        "E:\\Code\\repo\\ai-teaching-assistant-frontend\\docs\\requirements\\2026-05-07-local-rabbitmq-installation-on-windows-without-docker-deliverabl.md"
+      ],
+      "keywords": [
+        "local",
+        "rabbitmq",
+        "installation",
+        "windows",
+        "without",
+        "docker",
+        "deliverable",
+        "governed",
+        "impl",
+        "implementation",
+        "artifacts",
+        "verification"
+      ]
+    },
+    {
+      "source": "local-rabbitmq-installation-on-windows-without-docker-deliverabl",
+      "relation": "planned_in",
+      "target": "2026-05-07-local-rabbitmq-installation-on-windows-without-docker-deliverabl-execution-plan.md",
+      "evidence_paths": [
+        "E:\\Code\\repo\\ai-teaching-assistant-frontend\\docs\\plans\\2026-05-07-local-rabbitmq-installation-on-windows-without-docker-deliverabl-execution-plan.md"
+      ],
+      "keywords": [
+        "local",
+        "rabbitmq",
+        "installation",
+        "windows",
+        "without",
+        "docker",
+        "deliverable",
+        "governed",
+        "impl",
+        "implementation",
+        "artifacts",
+        "verification"
+      ]
+    },
+    {
+      "source": "local-rabbitmq-installation-on-windows-without-docker-deliverabl",
+      "relation": "executed_as",
+      "target": "execution-manifest.json",
+      "evidence_paths": [
+        "E:\\Code\\repo\\ai-teaching-assistant-frontend\\outputs\\runtime\\vibe-sessions\\20260507T104805Z-2fa851d5\\execution-manifest.json"
+      ],
+      "keywords": [
+        "local",
+        "rabbitmq",
+        "installation",
+        "windows",
+        "without",
+        "docker",
+        "deliverable",
+        "governed",
+        "impl",
+        "implementation",
+        "artifacts",
+        "verification"
+      ]
+    }
+  ]
+}

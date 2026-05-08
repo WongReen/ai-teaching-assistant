@@ -1,0 +1,22 @@
+{
+  "lane": "ruflo",
+  "stage": "plan_execute",
+  "task": "local RabbitMQ installation on Windows without Docker Deliverable: Governed impl... Deliverable: Governed implementation artifacts, verification evidence, and cleanup receipts. Constraints: Do not bypass the fixed six-stage governed runtime.; Do not widen scope silently beyond the frozen requirement document.. Update: Install RabbitMQ with Erlang to E:\\Code\\repo on Windows without Docker",
+  "top_k": 3,
+  "max_chars_per_item": 240,
+  "keywords": [
+    "local",
+    "rabbitmq",
+    "installation",
+    "windows",
+    "without",
+    "docker",
+    "deliverable",
+    "governed",
+    "impl",
+    "implementation",
+    "artifacts",
+    "verification"
+  ],
+  "project_key_source": null
+}

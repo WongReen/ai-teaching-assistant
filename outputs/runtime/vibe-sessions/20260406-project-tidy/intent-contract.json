@@ -1,0 +1,45 @@
+{
+  "run_id": "20260406-project-tidy",
+  "stage": "deep_interview",
+  "mode": "interactive_governed",
+  "goal": "Clean up and simplify the repository so the documented workspace matches the active backend and frontend structure.",
+  "deliverable": [
+    "Consolidated setup and roadmap docs under docs/",
+    "Updated workspace README and repository structure guide",
+    "Removed redundant root and backend artifacts",
+    "Aligned env templates, ignore files, and dependency manifests"
+  ],
+  "constraints": [
+    "Preserve pre-existing dirty worktree changes outside this scope",
+    "Avoid backend or frontend feature refactors",
+    "Keep removals limited to stale, generated, duplicate, or clearly unused assets"
+  ],
+  "acceptance_criteria": [
+    "README and structure docs reflect the current workspace layout",
+    "Development setup and debugging guidance live in one authoritative doc",
+    "TODO docs are clearly separated by language under docs/",
+    "Legacy root clutter and generated artifacts are removed",
+    "Manifest and env template cleanup is conservative and evidence-backed"
+  ],
+  "product_acceptance_criteria": [
+    "A contributor can identify the active backend, frontend, docs, scripts, and local-only directories from root docs and manifests alone."
+  ],
+  "manual_spot_checks": [
+    "Open README.md and confirm workspace entry points and docs links are correct.",
+    "Open docs/DEVELOPMENT_SETUP.md and confirm it covers setup and debugging together.",
+    "Open docs/TODO.md and confirm language-specific roadmap files are linked."
+  ],
+  "completion_language_policy": "Do not claim broad project refactoring; claim only repository cleanup, documentation consolidation, and conservative manifest hygiene backed by verification.",
+  "delivery_truth_contract": "Completion claims must be supported by search results, manifest parsing, diff inspection, and filesystem checks.",
+  "non_goals": [
+    "Refactoring backend or frontend business logic",
+    "Normalizing unrelated pre-existing deletions in the worktree",
+    "Guaranteeing every historical report in the repo is still current beyond the cleaned scope"
+  ],
+  "autonomy_mode": "inferred_repo_cleanup",
+  "open_questions": [],
+  "inference_notes": [
+    "The request explicitly authorized removal of redundant and generated repo-local artifacts.",
+    "Dependency cleanup was limited to packages shown unused by repository search or replaced by actively used equivalents."
+  ]
+}

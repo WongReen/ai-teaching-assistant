@@ -1,0 +1,72 @@
+{
+  "run_id": "20260406-project-tidy",
+  "stage": "plan_execute",
+  "status": "completed",
+  "executed_changes": [
+    "Removed stale root reports, helper scripts, duplicate root public assets, generated backend install artifacts, and empty legacy root directories.",
+    "Moved TODO.md and TODO_zh-CN.md into docs/ as TODO.en.md and TODO.zh-CN.md and added docs/TODO.md as an index.",
+    "Consolidated setup and debugging guidance into docs/DEVELOPMENT_SETUP.md and updated README.md and docs/REPOSITORY_STRUCTURE.md.",
+    "Aligned backend and frontend env templates with the active code paths.",
+    "Cleaned dependency manifests by removing unused root/frontend packages, dropping unused backend packages, and replacing passlib with bcrypt in backend requirements.",
+    "Expanded ignore rules for local runtime output, generated backend artifacts, uploads, logs, and editor caches."
+  ],
+  "removed_files": [
+    "DEMO_README.md",
+    "FRONTEND_TEST_REPORT.md",
+    "PROJECT_INTEGRITY_REPORT.md",
+    "REPORT_ANALYSIS_IMPROVEMENTS.md",
+    "TEST_INTEGRATION_REPORT.md",
+    "dev-start.bat",
+    "dev-start.sh",
+    "check_system.py",
+    "download_model.py",
+    "download_model_hf.py",
+    "final_test_chatglm.py",
+    "quick_test_chatglm.py",
+    "setup_env.bat",
+    "setup_env.sh",
+    "simple_test.py",
+    "start_all.bat",
+    "start_api.bat",
+    "start_controller.bat",
+    "start_worker.bat",
+    "temp_openapi.json",
+    "test_api.py",
+    "test_api_qwen.py",
+    "test_api_simple.py",
+    "test_cuda.py",
+    "test_deepseek_api.py",
+    "verify_deepseek_config.py",
+    "backend/INSTALLATION_SUMMARY.md",
+    "backend/environment.yml",
+    "backend/install_dependencies.bat",
+    "backend/installed_packages.txt",
+    "backend/test_output.txt",
+    "docs/DEBUGGING_GUIDE.md",
+    "logs/3_backend-test (3.11).txt",
+    "public/"
+  ],
+  "consolidated_files": [
+    "TODO.md -> docs/TODO.en.md",
+    "TODO_zh-CN.md -> docs/TODO.zh-CN.md",
+    "docs/DEVELOPMENT_SETUP.md now owns both setup and debugging guidance"
+  ],
+  "verification": {
+    "root_package_scripts_parse": "passed",
+    "frontend_manifest_parse": "passed",
+    "removed_legacy_paths_absent": "passed",
+    "stale_reference_search": "passed",
+    "secret_pattern_search": "passed"
+  },
+  "verification_commands": [
+    "node -p \"Object.keys(require('./package.json').scripts).join(', ')\"",
+    "node -p \"require('./frontend/package.json').dependencies['axios']\"",
+    "rg -n \"DEBUGGING_GUIDE|TODO_zh-CN|TODO\\.md|...\"",
+    "Test-Path public; Test-Path config; Test-Path models; Test-Path file_manager; Test-Path shrimp_data; Test-Path uploads",
+    "rg -n \"sk-[A-Za-z0-9]{10,}\""
+  ],
+  "scope_notes": [
+    "No backend or frontend feature code was intentionally refactored.",
+    "Unrelated pre-existing worktree deletions under .augment/, .github/workflows/, and similar paths were left untouched."
+  ]
+}

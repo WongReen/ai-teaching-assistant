@@ -1,0 +1,12 @@
+{
+  "stage": "plan_execute",
+  "owner": "state_store",
+  "status": "fallback_local_artifact",
+  "generated_at": "2026-05-07T10:48:13Z",
+  "source_execution_manifest": "E:\\Code\\repo\\ai-teaching-assistant-frontend\\outputs\\runtime\\vibe-sessions\\20260507T104805Z-2fa851d5\\execution-manifest.json",
+  "items": [
+    "Execution status: completed_with_failures",
+    "Executed units: 5; failures: 1",
+    "Specialist execution status: direct_current_session_routed"
+  ]
+}
