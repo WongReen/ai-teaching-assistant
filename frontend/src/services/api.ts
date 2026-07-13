@@ -1,5 +1,5 @@
 import axios, { AxiosError, type AxiosInstance, type AxiosResponse, type InternalAxiosRequestConfig } from 'axios'
-import type { User, LoginCredentials, RegisterData, Assignment, Submission, QAQuestion } from '@/types'
+import type { User, LoginCredentials, RegisterData, Assignment, Submission, QAQuestion, StudentRecord, StudentRecordCreate, StudentRecordUpdate } from '@/types'
 
 // Create axios instance
 const apiClient: AxiosInstance = axios.create({
@@ -291,6 +291,34 @@ export const tasksApi = {
 
   async submitBatchTask(type: string, data: any) {
     const response = await apiClient.post('/tasks/batch', { type, data })
+    return response.data
+  }
+}
+
+// Student Records API
+export const studentRecordsApi = {
+  async getAll(params?: { page?: number; page_size?: number; assignment_number?: string }) {
+    const response = await apiClient.get('/student-records', { params })
+    return response.data
+  },
+
+  async getByStudentId(studentId: string): Promise<StudentRecord> {
+    const response = await apiClient.get(`/student-records/${studentId}`)
+    return response.data
+  },
+
+  async create(data: StudentRecordCreate): Promise<StudentRecord> {
+    const response = await apiClient.post('/student-records', data)
+    return response.data
+  },
+
+  async update(studentId: string, data: StudentRecordUpdate): Promise<StudentRecord> {
+    const response = await apiClient.put(`/student-records/${studentId}`, data)
+    return response.data
+  },
+
+  async delete(studentId: string) {
+    const response = await apiClient.delete(`/student-records/${studentId}`)
     return response.data
   }
 }

@@ -133,3 +133,27 @@ export interface ToastMessage {
   message: string
   duration?: number
 }
+
+// Student Record types
+export interface StudentRecord {
+  id: number
+  name: string
+  student_id: string
+  assignment_number: string
+  created_at: string
+  updated_at: string | null
+}
+
+export interface StudentRecordCreate {
+  name: string
+  student_id: string
+  password: string
+  assignment_number: string
+}
+
+export interface StudentRecordUpdate {
+  name?: string
+  student_id?: string
+  password?: string
+  assignment_number?: string
+}

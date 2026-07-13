@@ -39,6 +39,7 @@ from api.triage import router as triage_router
 from api.rubrics import router as rubrics_router
 from api.grading import router as grading_router
 from api.tasks import router as tasks_router
+from api.student_records import router as student_records_router
 
 # Setup enhanced logger
 logger = setup_logger(
@@ -81,7 +82,8 @@ async def lifespan(app: FastAPI):
         from models import (
             Student, Teacher, Assignment, Submission, GradingResult,
             Question, Answer, PlagiarismCheck, Rubric, CodeFile,
-            FeedbackTemplate, AIInteraction, KnowledgeBaseEntry, QALog
+            FeedbackTemplate, AIInteraction, KnowledgeBaseEntry, QALog,
+            StudentRecord
         )
         await conn.run_sync(Base.metadata.create_all)
         logger.info("✅ Database tables initialized")
@@ -180,7 +182,7 @@ def create_app(testing: bool = False) -> FastAPI:
                         Student, Teacher, Assignment, Submission, GradingResult,
                         Question, Answer, PlagiarismCheck, Rubric, CodeFile,
                         AnalysisResult, FeedbackTemplate, AIInteraction,
-                        KnowledgeBaseEntry, QALog
+                        KnowledgeBaseEntry, QALog, StudentRecord
                     )
                     await conn.run_sync(Base.metadata.create_all)
             yield
@@ -235,6 +237,7 @@ def create_app(testing: bool = False) -> FastAPI:
     app.include_router(rubrics_router, prefix=settings.API_V1_PREFIX)
     app.include_router(grading_router, prefix=settings.API_V1_PREFIX)
     app.include_router(tasks_router, prefix=settings.API_V1_PREFIX)
+    app.include_router(student_records_router, prefix=settings.API_V1_PREFIX)
 
     return app
 

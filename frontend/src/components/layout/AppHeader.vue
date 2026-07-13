@@ -20,6 +20,7 @@ const activeMenu = computed(() => {
   if (path.startsWith('/grading')) return 'grading'
   if (path.startsWith('/manage-assignments')) return 'manage-assignments'
   if (path.startsWith('/question-queue')) return 'question-queue'
+  if (path.startsWith('/student-records')) return 'student-records'
   return 'dashboard'
 })
 
@@ -45,6 +46,7 @@ const handleMenuSelect = (index: string) => {
     'report-analysis': '/report-analysis',
     'smart-qa': '/smart-qa',
     'knowledge-base': '/knowledge-base',
+    'student-records': '/student-records',
   }
   const path = routeMap[index]
   if (path) {
@@ -131,6 +133,10 @@ const handleMenuSelect = (index: string) => {
         <el-menu-item index="knowledge-base">
           <el-icon><Reading /></el-icon>
           <span>知识库</span>
+        </el-menu-item>
+        <el-menu-item index="student-records">
+          <el-icon><User /></el-icon>
+          <span>学生记录</span>
         </el-menu-item>
       </el-menu>
     </div>
