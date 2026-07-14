@@ -1,1 +1,70 @@
-node_modules
+# Dependencies
+node_modules/
+frontend-react-backup/node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+envs/
+
+# IDE & editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.cursor/
+.vibeskills/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Build output
+dist/
+build/
+
+# Test & coverage
+htmlcov/
+.pytest_cache/
+.coverage
+*.cover
+
+# OS generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Runtime artifacts
+outputs/
+temp/
+
+# Uploads
+uploads/
+
+# TypeScript
+*.tsbuildinfo

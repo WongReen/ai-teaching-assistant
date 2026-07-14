@@ -4,13 +4,13 @@
 Create a comprehensive AI-powered teaching assistant platform that provides automated assignment grading, code analysis, plagiarism detection, and intelligent Q&A support for educational institutions with full frontend-backend integration.
 
 ## Key Knowledge
-- **Technology Stack**: Backend uses FastAPI with SQLAlchemy ORM, PostgreSQL/SQLite; Frontend uses React 19 with TypeScript and Material Design 3
+- **Technology Stack**: Backend uses FastAPI with SQLAlchemy ORM, PostgreSQL/SQLite; Frontend uses Vue 3 with TypeScript and Element Plus
 - **Authentication**: Production-grade JWT system with bcrypt password hashing, refresh token rotation, and token blacklisting
 - **AI Integration**: OpenAI API with local LLM fallback, intelligent feedback generation, and multi-dimensional evaluation
 - **Code Analysis**: Pylint, Radon, Bandit integration for static analysis with Chinese translations
 - **Project Structure**: Two main components (backend/frontend) with supporting scripts, documentation, and Docker configurations
-- **Build Commands**: Backend uses `python -m uvicorn app.main:app --reload --port 8000`, Frontend uses `npm start`
-- **Testing**: Backend uses pytest, Frontend uses React Testing Library
+- **Build Commands**: Backend uses `python -m uvicorn app.main:app --reload --port 8000`, Frontend uses `npm run dev`
+- **Testing**: Backend uses pytest, Frontend uses Vitest (待配置)
 - **Environment**: Requires Python 3.10+ and Node.js 18+
 
 ## Recent Actions

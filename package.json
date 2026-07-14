@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "node scripts/dev-start.js",
     "check:env": "node scripts/check-environment.js",
-    "frontend:start": "npm --prefix frontend start",
+    "frontend:start": "npm --prefix frontend run dev",
     "frontend:build": "npm --prefix frontend run build",
-    "frontend:test": "npm --prefix frontend test -- --watch=false"
+    "frontend:test": "npm --prefix frontend run test"
   }
 }

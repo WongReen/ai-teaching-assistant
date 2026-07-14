@@ -1,6 +1,6 @@
 # AI Teaching Assistant
 
-AI Teaching Assistant is a FastAPI + React workspace. The live application code is split between `backend/` and `frontend/`; the repository root is reserved for shared documentation, lightweight orchestration, and workspace-level config.
+AI Teaching Assistant is a FastAPI + Vue 3 workspace. The live application code is split between `backend/` and `frontend/`; the repository root is reserved for shared documentation, lightweight orchestration, and workspace-level config.
 
 ## Workspace Entry Points
 
@@ -24,7 +24,7 @@ cd backend
 python -m uvicorn app.main:app --reload --port 8000
 
 cd ../frontend
-npm start
+npm run dev
 ```
 
 ## Project Layout
@@ -32,7 +32,7 @@ npm start
 ```text
 .
 ├── backend/                  FastAPI API, models, services, migrations, tests
-├── frontend/                 React application
+├── frontend/                 Vue 3 application
 ├── docs/                     Stable project documentation and governed artifacts
 ├── issues/                   Product and backlog notes
 ├── scripts/                  Root-level workspace helpers

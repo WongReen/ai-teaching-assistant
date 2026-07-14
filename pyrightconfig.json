@@ -11,8 +11,6 @@
     "node_modules"
   ],
   "extraPaths": ["backend"],
-  "venvPath": "E:\\Code\\repo\\envs",
-  "venv": "ai-teaching",
   "pythonVersion": "3.10",
   "pythonPlatform": "All",
   "typeCheckingMode": "basic",
