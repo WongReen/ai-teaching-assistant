@@ -2,14 +2,17 @@
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { submissionsApi } from '@/services/api'
+import { useAuthStore } from '@/stores/auth'
 import { useToastStore } from '@/stores/toast'
 
 const route = useRoute()
 const router = useRouter()
+const authStore = useAuthStore()
 const toast = useToastStore()
 
 const assignmentId = route.params.assignmentId as string
 const fileList = ref<File[]>([])
+const content = ref('')
 const loading = ref(false)
 
 const handleFileChange = (files: File[]) => {
@@ -17,14 +20,19 @@ const handleFileChange = (files: File[]) => {
 }
 
 const handleSubmit = async () => {
-  if (fileList.value.length === 0) {
-    toast.warning('请选择要上传的文件')
+  const studentId = authStore.user?.student_id || ''
+  if (!studentId) {
+    toast.error('无法获取学号，请重新登录')
     return
   }
 
   loading.value = true
   try {
-    await submissionsApi.create(assignmentId, fileList.value)
+    await submissionsApi.create({
+      student_id: studentId,
+      assignment_id: assignmentId,
+      content: content.value || undefined,
+    })
     toast.success('作业提交成功')
     router.push('/dashboard')
   } catch (error: any) {

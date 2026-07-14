@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { submissionsApi } from '@/services/api'
+import { useAuthStore } from '@/stores/auth'
 import type { Submission } from '@/types'
 
+const authStore = useAuthStore()
 const submissions = ref<Submission[]>([])
 const loading = ref(true)
 
 onMounted(async () => {
   try {
-    submissions.value = await submissionsApi.getStudentSubmissions()
+    const studentId = authStore.user?.student_id || ''
+    submissions.value = await submissionsApi.getStudentSubmissions(studentId)
   } finally {
     loading.value = false
   }

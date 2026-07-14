@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { assignmentsApi, gradingApi } from '@/services/api'
+import { assignmentsApi, submissionsApi } from '@/services/api'
 import type { Assignment } from '@/types'
 
 const router = useRouter()
@@ -11,18 +11,18 @@ const loading = ref(true)
 
 onMounted(async () => {
   try {
-    const [assignmentsRes, pendingRes] = await Promise.allSettled([
-      assignmentsApi.getAll(),
-      gradingApi.getPendingSubmissions()
-    ])
-    if (assignmentsRes.status === 'fulfilled') {
-      const res = assignmentsRes.value
-      assignments.value = Array.isArray(res) ? res : (res.items ?? [])
+    const res = await assignmentsApi.getAll()
+    assignments.value = Array.isArray(res) ? res : (res.items ?? [])
+    // Count submissions for all assignments
+    let total = 0
+    for (const a of assignments.value) {
+      try {
+        const subs = await submissionsApi.getByAssignment(a.id)
+        const items = Array.isArray(subs) ? subs : (subs.items ?? [])
+        total += items.length
+      } catch { /* ignore per-assignment errors */ }
     }
-    if (pendingRes.status === 'fulfilled') {
-      const res = pendingRes.value
-      pendingCount.value = Array.isArray(res) ? res.length : 0
-    }
+    pendingCount.value = total
   } finally {
     loading.value = false
   }

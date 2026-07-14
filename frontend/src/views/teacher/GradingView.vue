@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { gradingApi } from '@/services/api'
+import { assignmentsApi, gradingApi, submissionsApi } from '@/services/api'
 import { useToastStore } from '@/stores/toast'
-import type { Submission } from '@/types'
+import type { Assignment, Submission } from '@/types'
 
 const toast = useToastStore()
+const assignments = ref<Assignment[]>([])
+const selectedAssignmentId = ref('')
 const submissions = ref<Submission[]>([])
 const loading = ref(true)
 const dialogVisible = ref(false)
@@ -13,13 +15,22 @@ const feedback = ref('')
 const grade = ref<number | undefined>(undefined)
 
 onMounted(async () => {
-  await loadSubmissions()
+  try {
+    const res = await assignmentsApi.getAll()
+    assignments.value = Array.isArray(res) ? res : (res.items ?? [])
+  } finally {
+    loading.value = false
+  }
 })
 
 const loadSubmissions = async () => {
+  if (!selectedAssignmentId.value) {
+    submissions.value = []
+    return
+  }
   loading.value = true
   try {
-    submissions.value = await gradingApi.getPendingSubmissions()
+    submissions.value = await submissionsApi.getByAssignment(selectedAssignmentId.value)
   } finally {
     loading.value = false
   }
@@ -34,9 +45,13 @@ const openGradeDialog = (submission: Submission) => {
 
 const handleGrade = async () => {
   if (!currentSubmission.value) return
-
   try {
-    await gradingApi.gradeSubmission(currentSubmission.value.id, feedback.value, grade.value)
+    const feedbackObj = { summary: feedback.value }
+    await gradingApi.gradeSubmission(
+      Number(currentSubmission.value.id),
+      feedbackObj,
+      grade.value ?? 0
+    )
     toast.success('批改完成')
     dialogVisible.value = false
     await loadSubmissions()
@@ -47,7 +62,7 @@ const handleGrade = async () => {
 
 const handleAutoGrade = async (submission: Submission) => {
   try {
-    await gradingApi.autoGrade(submission.id)
+    await gradingApi.autoGrade(Number(submission.id))
     toast.success('自动批改已提交')
     await loadSubmissions()
   } catch (error: any) {
@@ -59,6 +74,23 @@ const handleAutoGrade = async (submission: Submission) => {
 <template>
   <div class="grading-view">
     <h2>批改作业</h2>
+
+    <el-card class="selector-card">
+      <el-select
+        v-model="selectedAssignmentId"
+        placeholder="选择要批改的作业"
+        clearable
+        style="width: 300px"
+        @change="loadSubmissions"
+      >
+        <el-option
+          v-for="a in assignments"
+          :key="a.id"
+          :label="a.title"
+          :value="a.id"
+        />
+      </el-select>
+    </el-card>
 
     <el-card v-loading="loading">
       <el-empty v-if="submissions.length === 0" description="暂无待批改的作业" />
@@ -108,6 +140,10 @@ const handleAutoGrade = async (submission: Submission) => {
 }
 
 h2 {
+  margin-bottom: 20px;
+}
+
+.selector-card {
   margin-bottom: 20px;
 }
 </style>

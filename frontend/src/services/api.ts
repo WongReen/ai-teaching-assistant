@@ -118,8 +118,8 @@ export const assignmentsApi = {
 
 // Submissions API
 export const submissionsApi = {
-  async getStudentSubmissions() {
-    const response = await apiClient.get('/submissions/my-submissions')
+  async getStudentSubmissions(studentId: string) {
+    const response = await apiClient.get(`/submissions/student/${studentId}`)
     return response.data
   },
 
@@ -128,16 +128,8 @@ export const submissionsApi = {
     return response.data
   },
 
-  async create(assignmentId: string, files: File[]) {
-    const formData = new FormData()
-    formData.append('assignment_id', assignmentId)
-    files.forEach(file => {
-      formData.append('files', file)
-    })
-
-    const response = await apiClient.post('/submissions/', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' }
-    })
+  async create(data: { student_id: string; assignment_id: string; content?: string }) {
+    const response = await apiClient.post('/submissions', data)
     return response.data
   }
 }
@@ -226,7 +218,7 @@ export const qaApi = {
   },
 
   async getQuestions(): Promise<QAQuestion[]> {
-    const response = await apiClient.get('/qa/questions')
+    const response = await apiClient.get('/qa/pending-questions')
     return response.data
   },
 
@@ -241,12 +233,18 @@ export const qaApi = {
 // Analysis API
 export const analysisApi = {
   async analyzeCode(code: string, language: string) {
-    const response = await apiClient.post('/analysis/code', { code, language })
+    const response = await apiClient.post('/analysis/analyze', {
+      code,
+      language,
+      include_suggestions: true,
+    })
     return response.data
   },
 
   async checkPlagiarism(submissionId: string) {
-    const response = await apiClient.post(`/analysis/plagiarism/${submissionId}`)
+    const response = await apiClient.post('/assignments/plagiarism/check', {
+      submission_id: submissionId,
+    })
     return response.data
   },
 
@@ -254,7 +252,7 @@ export const analysisApi = {
     const formData = new FormData()
     formData.append('file', file)
 
-    const response = await apiClient.post('/analysis/report', formData, {
+    const response = await apiClient.post('/analysis/report/analyze', formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
     return response.data
@@ -263,21 +261,27 @@ export const analysisApi = {
 
 // Grading API
 export const gradingApi = {
-  async getPendingSubmissions() {
-    const response = await apiClient.get('/grading/pending')
+  async getByAssignment(assignmentId: string) {
+    const response = await apiClient.get(`/grading/assignment/${assignmentId}`)
     return response.data
   },
 
-  async gradeSubmission(submissionId: string, feedback: string, grade?: number) {
-    const response = await apiClient.post(`/grading/${submissionId}`, {
+  async gradeSubmission(submissionId: number, feedback: Record<string, any>, overallScore: number) {
+    const response = await apiClient.post('/grading', {
+      submission_id: submissionId,
+      overall_score: overallScore,
       feedback,
-      grade
+      graded_by: 'teacher',
     })
     return response.data
   },
 
-  async autoGrade(submissionId: string) {
-    const response = await apiClient.post(`/grading/${submissionId}/auto`)
+  async autoGrade(submissionId: number) {
+    const response = await apiClient.post('/grading', {
+      submission_id: submissionId,
+      overall_score: 0,
+      graded_by: 'AI',
+    })
     return response.data
   }
 }

@@ -2,18 +2,21 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { assignmentsApi, submissionsApi } from '@/services/api'
+import { useAuthStore } from '@/stores/auth'
 import type { Assignment, Submission } from '@/types'
 
 const router = useRouter()
+const authStore = useAuthStore()
 const assignments = ref<Assignment[]>([])
 const submissions = ref<Submission[]>([])
 const loading = ref(true)
 
 onMounted(async () => {
   try {
+    const studentId = authStore.user?.student_id || ''
     const [assignmentsRes, submissionsRes] = await Promise.all([
       assignmentsApi.getAll(),
-      submissionsApi.getStudentSubmissions()
+      submissionsApi.getStudentSubmissions(studentId)
     ])
     assignments.value = assignmentsRes
     submissions.value = submissionsRes
