@@ -82,8 +82,8 @@ async def lifespan(app: FastAPI):
         from models import (
             Student, Teacher, Assignment, Submission, GradingResult,
             Question, Answer, PlagiarismCheck, Rubric, CodeFile,
-            FeedbackTemplate, AIInteraction, KnowledgeBaseEntry, QALog,
-            StudentRecord
+            AnalysisResult, FeedbackTemplate, AIInteraction,
+            KnowledgeBaseEntry, QALog, StudentRecord
         )
         await conn.run_sync(Base.metadata.create_all)
         logger.info("✅ Database tables initialized")

@@ -252,7 +252,7 @@ export const analysisApi = {
     const formData = new FormData()
     formData.append('file', file)
 
-    const response = await apiClient.post('/analysis/report/analyze', formData, {
+    const response = await apiClient.post('/report-analysis/analyze-file', formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
     return response.data
