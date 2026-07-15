@@ -223,10 +223,10 @@ export const qaApi = {
   },
 
   async getKnowledgeBase(category?: string) {
-    const response = await apiClient.get('/knowledge-base/', {
+    const response = await apiClient.get('/knowledge-base', {
       params: { category }
     })
-    return response.data
+    return (response.data as { entries: unknown[] }).entries ?? response.data
   }
 }
 

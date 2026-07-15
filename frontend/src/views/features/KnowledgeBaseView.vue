@@ -1,9 +1,18 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { qaApi } from '@/services/api'
-import type { KnowledgeBaseEntry } from '@/types'
 
-const entries = ref<KnowledgeBaseEntry[]>([])
+interface KBEntry {
+  entry_id: string
+  question: string
+  answer: string
+  category: string
+  keywords: string[]
+  created_at: string
+  difficulty_level: number
+}
+
+const entries = ref<KBEntry[]>([])
 const loading = ref(true)
 const searchQuery = ref('')
 
@@ -19,13 +28,11 @@ const filteredEntries = computed(() => {
   if (!searchQuery.value) return entries.value
   const query = searchQuery.value.toLowerCase()
   return entries.value.filter(e =>
-    e.title.toLowerCase().includes(query) ||
-    e.content.toLowerCase().includes(query) ||
-    e.tags.some(t => t.toLowerCase().includes(query))
+    e.question.toLowerCase().includes(query) ||
+    e.answer.toLowerCase().includes(query) ||
+    e.keywords.some(t => t.toLowerCase().includes(query))
   )
 })
-
-import { computed } from 'vue'
 </script>
 
 <template>
@@ -46,12 +53,12 @@ import { computed } from 'vue'
       <el-collapse v-else>
         <el-collapse-item
           v-for="entry in filteredEntries"
-          :key="entry.id"
-          :title="entry.title"
+          :key="entry.entry_id"
+          :title="entry.question"
         >
-          <p>{{ entry.content }}</p>
+          <p>{{ entry.answer }}</p>
           <el-tag
-            v-for="tag in entry.tags"
+            v-for="tag in entry.keywords"
             :key="tag"
             size="small"
             class="tag"
